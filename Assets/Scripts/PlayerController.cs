@@ -6,8 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float speed;
+    public float jump;
+    public Rigidbody2D rb2;
+    
 
-   
+
+    private void Awake()
+    {
+        rb2 = GetComponent<Rigidbody2D>();
+    }
+
+
 
 
     private void Update()
@@ -38,11 +47,16 @@ public class PlayerController : MonoBehaviour
         //JUMP       
         private void PlayerJump(float horizontal)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) 
+            if (Input.GetKeyDown(KeyCode.Space) )
             {
-              animator.SetTrigger("Jump");            
-              
+              animator.SetBool("Jump", true);  
+                    
             }
+
+            else
+             {
+            animator.SetBool("Jump", false);
+             }
             
             
         }
@@ -68,9 +82,17 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement(float horizontal, float vertical) 
     {
-       Vector3 position = transform.position;
+      //Horizontal Movement
+        Vector3 position = transform.position;
         position.x = position.x + horizontal * speed * Time.deltaTime;
         transform.position = position;
+
+        //Vertical Movement
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb2.AddForce(Vector2.up * jump);
+            
+        }
     }
 
 

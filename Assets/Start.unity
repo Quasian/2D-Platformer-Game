@@ -340,6 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5445406787083556539}
+  speed: 3
+  jump: 4
 --- !u!1001 &9078134375372431161
 PrefabInstance:
   m_ObjectHideFlags: 0
