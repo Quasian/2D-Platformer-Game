@@ -230,7 +230,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.65}
   m_EdgeRadius: 0
 --- !u!1 &890424143
 GameObject:
@@ -315,6 +315,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5445406787083556537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3922067390481549696, guid: 75cd8a93eed24ad4d83e378a3c596a56,
+    type: 3}
+  m_PrefabInstance: {fileID: 9078134375372431161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5445406787083556539 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7057781749741501985, guid: 75cd8a93eed24ad4d83e378a3c596a56,
+    type: 3}
+  m_PrefabInstance: {fileID: 9078134375372431161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5445406787083556541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445406787083556537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fa2ab96f896f843bb59b66c2f65a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5445406787083556539}
 --- !u!1001 &9078134375372431161
 PrefabInstance:
   m_ObjectHideFlags: 0

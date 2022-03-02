@@ -5,54 +5,73 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
+    public float speed;
 
-    void Start()
-    { 
-            
-    }
+   
 
 
     private void Update()
     {
-        float speed = Input.GetAxisRaw("Horizontal");
-        float jump = Input.GetAxisRaw("Vertical");
-        PlayerAnimation(speed, jump);
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        PlayerAnimation(horizontal, vertical);
+        PlayerMovement(horizontal,vertical);
+        PlayerJump(horizontal);
+        PlayerCrouch();
     }
-        
-        private void PlayerAnimation(float speed, float jump)
-        { 
-        animator.SetFloat("Speed",Mathf.Abs(speed));
+
+    private void PlayerAnimation(float horizontal, float vertical)
+    {
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
         Vector3 scale = transform.localScale;
-        if (speed < 0)
+        if (horizontal < 0)
         {
-          scale.x = -1f * Mathf.Abs(scale.x);
-        }else if (speed > 0)
+            scale.x = -1f * Mathf.Abs(scale.x);
+        }
+        else if (horizontal > 0)
         {
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
 
-        
-        if (jump > 0)
-        {
-            animator.SetBool("Jump", true);
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
-         
-
-   if(Input.GetKey(KeyCode.LeftControl))
-        {
-            animator.SetBool("Crouch", true);
-         }
-    else
-        {
-    animator.SetBool("Crouch", false);
-        }
     }
+        //JUMP       
+        private void PlayerJump(float horizontal)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) 
+            {
+              animator.SetTrigger("Jump");            
+              
+            }
+            
+            
+        }
 
+        
+         //Crouch
+         private void PlayerCrouch()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+               
+                animator.SetBool("Crouch", true);
+            }
+            
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+            {
+              
+               animator.SetBool("Crouch", false);
+            }
+
+        }
+      
+
+    private void PlayerMovement(float horizontal, float vertical) 
+    {
+       Vector3 position = transform.position;
+        position.x = position.x + horizontal * speed * Time.deltaTime;
+        transform.position = position;
+    }
 
 
 
