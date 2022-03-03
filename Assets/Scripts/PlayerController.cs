@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public Transform GroundCheck;
     public LayerMask GroundLayer;
-    bool DoubleJump;
-    
+    public bool DoubleJump= false;
+    public BoxCollider2D deathcollider;
 
 
     private void Awake()
@@ -96,14 +96,18 @@ public class PlayerController : MonoBehaviour
         //Vertical Movement
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            
             Jump();
             DoubleJump = true;
+            Debug.Log("First Jump");
 
         }
-        else if (DoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == false)
         {
-            Jump();
-            DoubleJump = false;
+                Jump();
+                DoubleJump = false;
+                Debug.Log("Second Jump");
+            
         }
         
     }
@@ -111,7 +115,24 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        rb2.AddForce(Vector2.up * jump);
+        rb2.AddForce(Vector2.up * jump );
+    }
+
+
+    public void PlayerDeath()
+    {
+        transform.position = Vector2.zero;
+        Debug.Log("Player has died");
+        //Destroy(gameObject);
+       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            PlayerDeath();
+        }
     }
 
 }
