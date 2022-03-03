@@ -8,12 +8,17 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jump;
     public Rigidbody2D rb2;
+    public bool isGrounded;
+    public Transform GroundCheck;
+    public LayerMask GroundLayer;
+    bool DoubleJump;
     
 
 
     private void Awake()
     {
         rb2 = GetComponent<Rigidbody2D>();
+        
     }
 
 
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement(horizontal,vertical);
         PlayerJump(horizontal);
         PlayerCrouch();
+        isGrounded = Physics2D.OverlapCircle(GroundCheck.position, 0.2f, GroundLayer);
     }
 
     private void PlayerAnimation(float horizontal, float vertical)
@@ -88,13 +94,24 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
 
         //Vertical Movement
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb2.AddForce(Vector2.up * jump);
-            
+            Jump();
+            DoubleJump = true;
+
         }
+        else if (DoubleJump)
+        {
+            Jump();
+            DoubleJump = false;
+        }
+        
     }
 
 
+    private void Jump()
+    {
+        rb2.AddForce(Vector2.up * jump);
+    }
 
 }
