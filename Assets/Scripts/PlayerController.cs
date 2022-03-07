@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask GroundLayer;
     public bool DoubleJump= false;
     public BoxCollider2D deathcollider;
+    public ScoreController scoreController;
 
+    public void PickUpKey()
+    {
+        Debug.Log("Picked up Key");
+        scoreController.IncreaseScore(10);
+    }
 
     private void Awake()
     {
@@ -21,9 +28,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-
-
+   
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -118,7 +123,7 @@ public class PlayerController : MonoBehaviour
         rb2.AddForce(Vector2.up * jump );
     }
 
-
+    //Player death and Respawn
     public void PlayerDeath()
     {
         transform.position = Vector2.zero;

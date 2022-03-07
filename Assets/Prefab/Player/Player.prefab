@@ -281,10 +281,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7057781749741501985}
   speed: 3
-  jump: 150
+  jump: 250
   rb2: {fileID: 993611191743013497}
   isGrounded: 1
   GroundCheck: {fileID: 1105058544}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  DoubleJump: 1
+  deathcollider: {fileID: 0}
+  scoreController: {fileID: 0}
