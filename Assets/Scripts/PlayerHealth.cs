@@ -6,19 +6,31 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public int maxHealth = 3;
-    public int currentHealth;
-    
-    
-    // Start is called before the first frame update
+    public GameObject[] healthimage;
+    PlayerController playercontroller;
+
+
+
     void Start()
     {
-        maxHealth = currentHealth;
+        playercontroller = GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void TakeDamage(int health)
     {
-        
+        health--;
+        if (health <= 0)
+        {
+            Destroy(healthimage[health].gameObject);
+            playercontroller.PlayerDeath();
+
+        }
+        else
+        {
+            Destroy(healthimage[health].gameObject);
+        }
+    
+    
     }
 }

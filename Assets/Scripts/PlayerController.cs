@@ -16,7 +16,18 @@ public class PlayerController : MonoBehaviour
     public bool DoubleJump= false;
     public BoxCollider2D deathcollider;
     public ScoreController scoreController;
+    public int playerHealth;
+    PlayerHealth healthSystem;
 
+
+
+    void Start()
+    { 
+        healthSystem = GetComponent<PlayerHealth>();
+    
+    }
+    
+    
     //Pickup key
     public void PickUpKey()
     {
@@ -42,6 +53,17 @@ public class PlayerController : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
         
+    }
+
+
+    public void PlayerDamage()
+    {
+        if (playerHealth > 0)
+        { 
+            healthSystem.TakeDamage(playerHealth);
+            playerHealth--;
+        }
+    
     }
 
    
