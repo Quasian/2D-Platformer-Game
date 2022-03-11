@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,10 +17,25 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D deathcollider;
     public ScoreController scoreController;
 
+    //Pickup key
     public void PickUpKey()
     {
         Debug.Log("Picked up Key");
         scoreController.IncreaseScore(10);
+    }
+
+    //Kill player by enemy
+    public void KillPlayer()
+    {
+        Debug.Log("Player killed by Enemy");
+        Destroy(gameObject);
+        ReloadLevel();
+
+    }
+
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void Awake()
@@ -117,7 +133,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
+    //Player Jump
     private void Jump()
     {
         rb2.AddForce(Vector2.up * jump );
@@ -131,7 +147,8 @@ public class PlayerController : MonoBehaviour
         //Destroy(gameObject);
        
     }
-
+    
+    //Player Death
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Death"))
