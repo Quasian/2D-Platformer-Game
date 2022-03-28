@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(healthimage[health].gameObject);
             playercontroller.PlayerDeath();
-
+            Debug.Log("Live lost");
         }
         else
         {

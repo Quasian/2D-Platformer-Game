@@ -1958,6 +1958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5445406787083556541, guid: 75cd8a93eed24ad4d83e378a3c596a56,
         type: 3}
+      propertyPath: playerHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445406787083556541, guid: 75cd8a93eed24ad4d83e378a3c596a56,
+        type: 3}
       propertyPath: deathcollider
       value: 
       objectReference: {fileID: 1486371632}
