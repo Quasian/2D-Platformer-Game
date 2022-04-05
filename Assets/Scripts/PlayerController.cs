@@ -17,13 +17,13 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D deathcollider;
     public ScoreController scoreController;
     public int playerHealth;
-    PlayerHealth healthSystem;
+    public PlayerHealth healthSystem;
 
 
 
     void Start()
     { 
-        healthSystem = GetComponent<PlayerHealth>();
+        
     
     }
     
@@ -171,12 +171,15 @@ public class PlayerController : MonoBehaviour
     }
     
     //Player Death
-    private void OnTriggerEnter2D(Collider2D collision)
+  
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Death"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            PlayerDeath();
+            PlayerDamage();
+
         }
+
     }
 
 }

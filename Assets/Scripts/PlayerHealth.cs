@@ -7,13 +7,13 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public GameObject[] healthimage;
-    PlayerController playercontroller;
+    public PlayerController playercontroller;
 
 
 
     void Start()
     {
-        playercontroller = GetComponent<PlayerController>();
+       
     }
 
 
