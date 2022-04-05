@@ -28,6 +28,7 @@ public class LevelLoader : MonoBehaviour
 
              case LevelStates.Unlocked:
               SceneManager.LoadScene(LevelName);
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 break;
             
             case LevelStates.Completed:
